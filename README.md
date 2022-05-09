@@ -42,3 +42,34 @@ graphiql: true
 
 1. use parent in resolve function to get the current object type
 2. then find the assoicated object type and return in
+
+## GraphQL Tutorial #14 - GraphQL Lists
+
+1. new GraphQLList(ObjectType)
+2. Problem of non function fields in object type
+
+   1. Bidirectional Reference Error
+
+## GraphQL Tutorial #15 - More on Root Queries
+
+1. return a list of book/authors in root query
+
+## GraphQL Tutorial #16 - Connecting to mLab
+
+1. mLab is not here now, use Mongodb Atlas
+2. when enter the password, the # in password may cause escape charater. use encodeURIComponent to prevent this
+
+## GraphQL Tutorial #18 - Mutations
+
+1. create an object type called mutation
+2. save the data in mongodb but the save function
+3. return the res of save function to the resolve function
+
+## GraphQL Tutorial #20 - Updating the Resolve Functions
+
+1. return a list by find function
+2. findById function
+
+## GraphQL Tutorial #21 - GraphQL NonNull
+
+1. Non null field
