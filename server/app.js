@@ -2,9 +2,14 @@ const express = require("express");
 const { graphqlHTTP } = require("express-graphql");
 const schema = require("./schema/schema");
 const mongoose = require("mongoose");
+const cors = require("cors");
 
 const app = express();
 
+// ======================================  CORS
+
+app.use(cors());
+// ======================================  Mongodb
 const username = "yuensc07";
 const password = encodeURIComponent("be9zSYKeFFSv#m9");
 const url = `mongodb+srv://${username}:${password}@cluster0.tudx4.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
