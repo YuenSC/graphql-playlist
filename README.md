@@ -73,3 +73,15 @@ graphiql: true
 ## GraphQL Tutorial #21 - GraphQL NonNull
 
 1. Non null field
+
+## GraphQL Tutorial #33 - Re-fetching Queries
+
+1. mutate then fetch by refetchQueries (the loading state is missing ? seem need to find it)
+
+## Later
+
+There are lots of changes that I want to added in the react app, so I have not followed the vidoe exactly. But overall I follow the style and functionality
+
+1. Add typescript
+2. use functional component
+3. use hooks from appollo

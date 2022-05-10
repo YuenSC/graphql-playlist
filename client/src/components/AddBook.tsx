@@ -1,51 +1,59 @@
-import { gql, useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import {
-  Box,
   Button,
   FormControl,
   FormLabel,
   Input,
   Select,
+  Skeleton,
   Stack,
-  useToast,
 } from "@chakra-ui/react";
-import React, { useCallback } from "react";
-import { Controller, useForm } from "react-hook-form";
+import React from "react";
+import { Controller, SubmitHandler, useForm } from "react-hook-form";
 
+import { addBookQuery, getAuthorQuery } from "../query/author";
+import { getBooksQuery } from "../query/book";
 import { Author } from "../type";
-
-const getAuthorQuery = gql`
-  {
-    authors {
-      id
-      name
-    }
-  }
-`;
 
 type AuthorListApiResponse = {
   authors: Author[];
 };
 
+type AuthorGetApiParams = {
+  name: string;
+  genre: string;
+  authorId?: string;
+};
+
 const AddBook = () => {
-  const toast = useToast();
-  const { register, handleSubmit, control } = useForm();
+  const { register, handleSubmit, control, reset } =
+    useForm<AuthorGetApiParams>();
 
-  const {
-    loading,
-    error,
-    data: { authors = [] } = {},
-  } = useQuery<AuthorListApiResponse>(getAuthorQuery);
+  const [addBook, { loading: isAddingBook }] = useMutation<{
+    addBook: AuthorGetApiParams;
+  }>(addBookQuery);
 
-  console.log("authors :>> ", authors);
+  const { loading: isLoadingAuthors, data: { authors = [] } = {} } =
+    useQuery<AuthorListApiResponse>(getAuthorQuery);
 
-  const handleAddBook = (value: any) => {
+  console.log("isLoadingAuthors", isLoadingAuthors);
+  console.log("isAddingBook :>> ", isAddingBook);
+
+  const handleAddBook: SubmitHandler<AuthorGetApiParams> = async (value) => {
     console.log("value :>> ", value);
+    await addBook({
+      variables: value,
+      refetchQueries: [getBooksQuery],
+    });
+    reset();
   };
 
   return (
     <Stack
+      pos="absolute"
+      bottom={0}
       spacing={4}
+      minW={"500px"}
       p={4}
       as="form"
       id="add-book"
@@ -60,23 +68,31 @@ const AddBook = () => {
         <FormLabel>Genre:</FormLabel>
         <Input type="text" {...register("genre")} />
       </FormControl>
+
       <Controller
         control={control}
         name="authorId"
         render={() => (
           <FormControl>
             <FormLabel>Author :</FormLabel>
-            <Select>
-              {authors.map((author) => (
-                <option key={author.id} value={author.id}>
-                  {author.name}
-                </option>
-              ))}
-            </Select>
+            <Skeleton isLoaded={!isLoadingAuthors}>
+              <Select>
+                {authors.map((author) => (
+                  <option key={author.id} value={author.id}>
+                    {author.name}
+                  </option>
+                ))}
+              </Select>
+            </Skeleton>
           </FormControl>
         )}
       />
-      <Button type="submit" bgColor={"purple.300"} w="fit-content">
+      <Button
+        type="submit"
+        bgColor={"purple.300"}
+        w="fit-content"
+        isLoading={isAddingBook}
+      >
         Add
       </Button>
     </Stack>

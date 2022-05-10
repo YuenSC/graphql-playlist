@@ -32,5 +32,6 @@ app.use(
 );
 
 app.listen(4000, () => {
-  console.log("now listening on port 4000");
+  console.log("now listening on port 4000 => http://localhost:4000/");
+  console.log("Go the mongodb => https://cloud.mongodb.com/");
 });
