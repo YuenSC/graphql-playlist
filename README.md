@@ -7,7 +7,7 @@ This reamde try to record any useful thinig by the lecture number in the above y
 Domain :
 
 1. Api https://graphql-api-14052022.herokuapp.com/
-2. React app
+2. React app https://graphql-react-app-14052022.herokuapp.com/
 
 Reference :
 
@@ -92,3 +92,16 @@ There are lots of changes that I want to added in the react app, so I have not f
 1. Add typescript
 2. use functional component
 3. use hooks from appollo
+
+---
+
+Deploy to heroku in a monorepo
+
+Guide : https://blog.softup.co/how-to-deploy-a-monorepo-to-multiple-heroku-apps-using-github-actions/
+
+1. $ heroku create api-02092020
+2. $ heroku buildpacks:add -a api-02092020 heroku/nodejs
+3. $ heroku buildpacks:add -a api-02092020 https://github.com/lstoll/heroku-buildpack-monorepo -i 1
+4. $ heroku config:set -a api-02092020 APP_BASE=src/api
+5. $ git remote add heroku-api https://git.heroku.com/api-02092020.git
+6. $ git push heroku-api master
