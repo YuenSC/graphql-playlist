@@ -36,9 +36,6 @@ const AddBook = () => {
   const { loading: isLoadingAuthors, data: { authors = [] } = {} } =
     useQuery<AuthorListApiResponse>(getAuthorQuery);
 
-  console.log("isLoadingAuthors", isLoadingAuthors);
-  console.log("isAddingBook :>> ", isAddingBook);
-
   const handleAddBook: SubmitHandler<AuthorGetApiParams> = async (value) => {
     console.log("value :>> ", value);
     await addBook({
