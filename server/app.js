@@ -4,17 +4,17 @@ const schema = require("./schema/schema");
 const mongoose = require("mongoose");
 const cors = require("cors");
 
+require("dotenv").config();
+
 const app = express();
+const PORT = process.env.PORT || 4000;
 
 // ======================================  CORS
 
 app.use(cors());
 // ======================================  Mongodb
-const username = "yuensc07";
-const password = encodeURIComponent("be9zSYKeFFSv#m9");
-const url = `mongodb+srv://${username}:${password}@cluster0.tudx4.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 
-mongoose.connect(url);
+mongoose.connect(process.env.MONGODB_URI || url);
 mongoose.connection
   .once("open", () => {
     console.log("connected to database");
@@ -31,7 +31,6 @@ app.use(
   })
 );
 
-app.listen(4000, () => {
-  console.log("now listening on port 4000 => http://localhost:4000/");
-  console.log("Go the mongodb => https://cloud.mongodb.com/");
+app.listen(PORT, () => {
+  console.log(`now listening on port ${PORT}`);
 });

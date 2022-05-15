@@ -7,6 +7,8 @@ This reamde try to record any useful thinig by the lecture number in the above y
 Reference :
 
 1. [git in github](https://github.com/YuenSC/graphql-playlist)
+2. heroku https://dashboard.heroku.com/apps/graphql-api-14052022/access
+3. mongodb https://cloud.mongodb.com/v2/60ed467d2442de7169e66995#clusters
 
 ## L6
 
