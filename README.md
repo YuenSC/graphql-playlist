@@ -4,6 +4,11 @@ This is a code-along of a grpahql tutorial from https://www.youtube.com/playlist
 
 This reamde try to record any useful thinig by the lecture number in the above youtube playlist.
 
+Domain :
+
+1. Api https://graphql-api-14052022.herokuapp.com/
+2. React app
+
 Reference :
 
 1. [git in github](https://github.com/YuenSC/graphql-playlist)
